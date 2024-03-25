@@ -1,0 +1,47 @@
+Input
+
+Output / Class / Label
+
+Cat         Dog         Cow         Horse
+[1 0 0 0]   [0 1 0 0]   [0 0 1 0]   [0 0 0 1]
+-> One-Hot-Encoding
+
+Training / Learning
+
+Dataset
+(Input + Output)
+    - Training Data
+    - Validation Data   (Cross-validation) -> Hyperparameter Tunning을 위해 테스트하는 데이터
+    - Test Data
+
+Neuron
+
+Basic single layer network
+
+affine mapping -> activation function(non-linearlity)
+
+Layer를 100개 쌓아도 하나의 Layer로 표현이 가능함 -> non-linearlity가 필요함 -> activation function
+
+sigmoid(확률)
+thanh(-1 ~ +1)
+ReLU
+softplus(regression)
+
+Epoch / Batch size / Iteration
+
+    One epoch: one forward and backward pass of all training data
+
+    Batch size: the number of training examples in one forward and backward pass
+
+    One iteration: number of passes
+
+Cost function
+왜 이 Cost function을 썼는지 고민해야해고 바꿀줄 알아야함
+
+    This is just a function that we want to minimize
+
+    There is no guarantee that it will bring us to the best solution
+
+    It should be differentiable
+
+MNIST
