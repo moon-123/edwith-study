@@ -1,0 +1,112 @@
+대회 1등
+
+CNN
+Layer 수가 많아지면 성능이 좋아질 가능성이 높아진다. 무조건 좋아지진 않는다.
+
+parameter 수를 세는 연습
+
+AlexNet
+    parameter 수
+    - 11 * 11 * 3
+    - 11 * 11 * 3 * 48
+    - 11 * 11 * 3 * 48 + 48
+
+    두 갈래로 나눠지는 이유는 GPU가 약해서 -> 지금은 충분함
+    윗 단과 아랫 단을 다른 GPU에 넣어서 학습
+    두 갈래 길로 가는 구조는 더이상 없다?
+    ## 지금도 없는지 찾아볼것
+
+    ReLU(Standard) 2016년 기준임
+    ## 지금도 디폴트인지 찾아볼 것
+
+    2014년 논문에선 ReLU가 좋다고 발표함
+
+    LRN(Local Response Normalization)
+        - CFM에서 일정 부분만 높게 activation되게 하는 것
+        ## 지금은 어떻게 사용되는지 찾아볼것
+
+
+    Regularization in AlexNet
+        - Data Augmentation
+            Label Preserving Transformation
+            숫자면 flip하면 안된다. 도메인을 알아야 정확하게 가능
+            AlexNet에서는
+                - Smaller patch
+                - Color variation
+                ## 두가지 기법 알아보기
+
+        - Drop Out
+            어떤 layer에서 일정 %만큼을 0으로 만든다(Random)
+            여기서는 output에 0.5를 곱했다
+
+
+VGG
+옥스포드 팀 이름이었음
+    - conv 3x3
+    - stride 1
+    - max pooling, avg pooling
+    VGG19, VGG16을 많이 활용(layer 개수)
+    19단
+
+GoogLeNet
+Google + LeNet
+    Inception Module을 잘 활용함
+    
+    Inception Module
+        - 다른 convolution을 적용하고 concate
+        - actual에서는 1x1 convolution이 추가됨 -> 어떤 역할??
+
+        One by One convolution
+            - 채널의 수를 중간에 줄였을 때 네트워크를 정의하는 파라미터의 수가 줄어든다
+
+            3 3 18 30 = 4860
+            1 1 18 5 + 3 3 5 30 = 1440
+            -> Layer가 늘어났는데 Parameter가 줄어든다
+
+
+    설명
+        1x1, 3x3, 5x5, 3x3 max pooling을 각각 사용하면 특징을 잘 추출한다?
+        얼마나 Dense되었냐??
+        큰 물체와 작은 물체의 차이 때문에 convolution filter의 크기가 일정하면 의미가 달라질 수 있기 때문에 다양하게 적용하려는 것
+
+    결과
+        더 깊은 네트워크임에도 불구하고 성능을 많이 올릴 수 있다.
+        22단
+        구글넷의 파라미터수가 VGG의 파라미터 수보다 절반임
+
+    왜 잘되는지는 알 수 없다? 하다보니 잘 된다???
+
+    중요한 점
+        Receptiv field를 다양하게 만든다?
+        1x1 conv로 channel reduction
+
+ResNet
+    Residual Connection
+    152 layers network
+
+    범용적으로 활용될 수 있다.
+
+    Deeper network는 항상 정답은 아님
+    vanishing/exploding gradients 때문
+
+    Better initialization methods / batch normalization / ReLU를 통해 위 문제가 해결
+
+    근데 Overfitting은? -> train accuracy는 높아지는데 validation accuracy는 줄어든다 -> 얼리스탑
+
+    상관 없다
+
+    Degradation problem
+
+    입출력 차원을 같게 한다 -> 출력에 입력을 더한다.
+
+    어떤 타겟과 현재 입력 사이의 차이만을 학습하겠다.
+
+    Demension reduction -> Convolution -> Dimension increasement
+    왜냐하면 입력 출력 차원을 같게 하기 위해
+
+    Deeper bottle architecture
+
+    Layer가 1000개를 넘어가면 성능이 잘 안 나온다.
+    
+
+ILSVRC Challange
